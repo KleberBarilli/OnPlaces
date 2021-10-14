@@ -1,8 +1,8 @@
 module.exports = {
-	"type": "postgre",
+	"type": "postgres",
 	"host": "localhost",
 	"port": 5432,
-	"username": "postgre",
+	"username": "postgres",
 	"password": "docker",
 	"database": "cities",
 	"synchronize": true,
