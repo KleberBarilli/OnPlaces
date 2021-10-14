@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import express from "express";
+import express from 'express';
 import cors from 'cors';
 
 const app = express();
@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-app.listen(process.env.PORT,() => {
-    console.log(`Rodando na porta ${process.env.PORT}`);
-})
+app.listen(process.env.PORT, () => {
+	console.log(`Rodando na porta ${process.env.PORT}`);
+});
