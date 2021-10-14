@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateCities1634238415179 implements MigrationInterface {
+export class CreateCities1634239761330 implements MigrationInterface {
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
 			new Table({
@@ -16,6 +16,11 @@ export class CreateCities1634238415179 implements MigrationInterface {
 					{
 						name: 'name',
 						type: 'varchar',
+					},
+					{
+						name: 'description',
+						type: 'varchar',
+						isNullable: true,
 					},
 					{
 						name: 'state',
@@ -42,6 +47,16 @@ export class CreateCities1634238415179 implements MigrationInterface {
 						name: 'image',
 						type: 'varchar',
 						isNullable: true,
+					},
+					{
+						name: 'created_at',
+						type: 'timestamp with time zone',
+						default: 'now()',
+					},
+					{
+						name: 'updated_at',
+						type: 'timestamp with time zone',
+						default: 'now()',
 					},
 				],
 			}),
