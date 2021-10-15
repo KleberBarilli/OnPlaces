@@ -18,12 +18,8 @@ export default class CreateUserService {
 		email,
 		password,
 	}: ICreateUser): Promise<IUser> {
-		const nameExists = await this.usersRepository.findByName(name);
 		const emailExists = await this.usersRepository.findByEmail(email);
 
-		if (nameExists) {
-			throw new AppError('name already exist');
-		}
 		if (emailExists) {
 			throw new AppError('Email already exist');
 		}

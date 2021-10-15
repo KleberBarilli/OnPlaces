@@ -5,7 +5,8 @@ module.exports = {
 	"username": "postgres",
 	"password": "docker",
 	"database": "cities",
-	"synchronize": true,
+	"synchronize": false,
+	"migrationsRun": false,
 	"logging": false,
 	"entities": ["./src/modules/**/typeorm/entities/*.ts"],
 	"migrations": [
