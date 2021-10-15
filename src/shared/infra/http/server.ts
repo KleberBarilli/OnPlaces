@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import '@shared/infra/typeorm';
+import '@shared/container';
 import '@shared/errors/AppError';
 import AppError from '@shared/errors/AppError';
 
