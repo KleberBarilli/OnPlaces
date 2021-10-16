@@ -23,21 +23,41 @@ function AuthProvider({children}){
 		loadStorage();
 
 	}, [])
-	const config = {
-		headers :{
-		  "Content-Type": "application/json",
-		 }
-	  }
+
+	async function signIn(email, password){
+        setLoadingAuth(true);
+
+
+        if(email === '' || password === ''){
+            setLoadingAuth(false);
+            return;
+        };
+
+        await api.post('/sessions', {email: email, password: password})
+        .then( (res) => {
+
+            let data = {
+                token: res.data.token,
+                id: res.data.user.id,
+                nome: res.data.user.username,
+                email: res.data.user.email,
+                avatar: res.data.user.avatar
+            };
+
+            setUser(data);
+            storageUser(data);
+            setLoadingAuth(false);
+        })
+        .catch( (err) => {
+            setLoadingAuth(false);
+            console.log(err);
+        })
+    };
 
 	async function signUp(name, email, password){
-		alert(email, password)
 
 		await api.post('/users', {name:name, email:email, password:password},
-		{
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}
+
 		)
 			.then((res) => {
 				console.log(res.data)
@@ -61,8 +81,14 @@ function AuthProvider({children}){
 		localStorage.setItem('SistemaUser', JSON.stringify(data))
 	}
 
+	function signOut(){
+		localStorage.removeItem('SistemaUser');
+        setUser(null);
+	}
+
+
 	return(
-		<AuthContext.Provider value={{ signed:!!user, user, loading, signUp }}>
+		<AuthContext.Provider value={{ signed:!!user, user, loading, signUp, signOut, signIn, loadingAuth }}>
 			{children}
 		</AuthContext.Provider>
 	)
