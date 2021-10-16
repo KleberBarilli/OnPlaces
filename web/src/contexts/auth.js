@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
+import { toast } from 'react-toastify';
 import api from '../services/api';
 
 export const AuthContext = createContext({});
@@ -46,10 +47,12 @@ function AuthProvider({children}){
 
             setUser(data);
             storageUser(data);
+			toast.success('Bem vindo de volta :)')
             setLoadingAuth(false);
         })
         .catch( (err) => {
             setLoadingAuth(false);
+			toast.error('Ops, algo deu errado :(')
             console.log(err);
         })
     };
@@ -69,11 +72,15 @@ function AuthProvider({children}){
 				};
 				setUser(data)
 				storageUser(data);
+				toast.success('Bem vindo a plataforma')
 				setLoadingAuth(false);
+
 			})
 			.catch((err) => {
 				console.log(err);
+				toast.error('Ops, algo deu errado :(')
 				setLoadingAuth(false);
+
 			})
 	}
 
