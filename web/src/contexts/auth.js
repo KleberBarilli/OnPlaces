@@ -42,7 +42,7 @@ function AuthProvider({children}){
                 id: res.data.user.id,
                 nome: res.data.user.username,
                 email: res.data.user.email,
-                avatar: res.data.user.avatar
+                avatarUrl: res.data.user.avatar
             };
 
             setUser(data);
