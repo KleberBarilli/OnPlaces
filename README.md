@@ -43,7 +43,8 @@ npm run test
 ## To run the front-end code
 ```bash
 cd web/
-yarn start
+yarn install or npm install
+yarn start or npm start
 ```
 
 🇧🇷Aprenda como configurar o eslint e o prettier em seus projetos nodejs: https://medium.com/@kleber.barilli73/como-instalar-e-configurar-o-eslint-e-o-prettier-c8f270416ffb
