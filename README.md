@@ -46,5 +46,6 @@ cd web/
 yarn install or npm install
 yarn start or npm start
 ```
+<br>
 
 🇧🇷Aprenda como configurar o eslint e o prettier em seus projetos nodejs: https://medium.com/@kleber.barilli73/como-instalar-e-configurar-o-eslint-e-o-prettier-c8f270416ffb
