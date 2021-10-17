@@ -4,8 +4,10 @@ import { AuthContext}  from '../../contexts/auth';
 import avatar from '../../assets/avatar.png';
 
 import { Link } from 'react-router-dom';
-import { FiSettings } from 'react-icons/fi';
+import { FiSettings, FiHome } from 'react-icons/fi';
+import { FaCity } from 'react-icons/fa';
 import { BiWorld } from 'react-icons/bi';
+import { MdTravelExplore } from "react-icons/md";
 
 
 function Header() {
@@ -19,7 +21,22 @@ function Header() {
 		  </div>
 
 		  <Link to="/dashboard">
+		  	<FiHome color="#FFF" size={24} />
+		  		Home
+		  </Link>
+
+		  <Link to="/cities">
 		  	<BiWorld color="#FFF" size={24} />
+		  		Todas as cidades
+		  </Link>
+
+		  <Link to="/city">
+		  	<FaCity color="#FFF" size={24} />
+		  		Cadastrar uma cidade
+		  </Link>
+
+		  <Link to="/mycities">
+		  	<MdTravelExplore color="#FFF" size={24} />
 		  		Cidades Visitadas
 		  </Link>
 
