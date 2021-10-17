@@ -34,7 +34,7 @@ function Profile() {
 							</span>
 							<input type="file" accept="image/*" />
 							<br />
-							{avatarUrl === undefined ? <img src={avatar} width="250" alt="Foto de perfil"/> :
+							{avatarUrl === null || undefined  ? <img src={avatar} width="250" alt="Foto de perfil"/> :
 							<img src={avatarUrl} width="250" alt="Foto de perfil"/>}
 						</label>
 

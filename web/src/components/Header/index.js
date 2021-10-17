@@ -17,9 +17,8 @@ function Header() {
   return(
 	  <div className="sidebar">
 		  <div>
-		  	<img src={user.avatarUrl === undefined ? avatar : user.avatarUrl } alt="Foto avatar" />
+		  	<img src={user.avatarUrl === null || undefined ? avatar : user.avatarUrl } alt="Foto avatar" />
 		  </div>
-
 		  <Link to="/dashboard">
 		  	<FiHome color="#FFF" size={24} />
 		  		Home
