@@ -23,7 +23,7 @@ function Header() {
 		  		Cidades Visitadas
 		  </Link>
 
-		  <Link to="/dashboard">
+		  <Link to="/profile">
 		  	<FiSettings color="#FFF" size={24} />
 		  		Configurações da Conta
 		  </Link>
