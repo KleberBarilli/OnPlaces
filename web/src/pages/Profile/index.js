@@ -15,6 +15,10 @@ function Profile() {
 
 	const [avatarUrl, setAvatarUrl]= useState(user && user.avatarUrl);
 
+	function handleSave(e){
+		e.preventDefault();
+	}
+
 
 	return (
 		<div>
@@ -26,7 +30,7 @@ function Profile() {
 				</Title>
 
 				<div className="container">
-					<form className="form-profile">
+					<form className="form-profile" onSubmit={handleSave}>
 						<label className="label-avatar
 						">
 							<span>
@@ -48,7 +52,7 @@ function Profile() {
 					</form>
 				</div>
 				<div className="container">
-					<button className="logout-btn" onClick={ () => signOut()}>sair</button>
+					<button className="logout-btn" onClick={ () => signOut()}>Sair</button>
 				</div>
 			</div>
 		</div>
