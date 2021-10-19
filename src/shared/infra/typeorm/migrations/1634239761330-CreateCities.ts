@@ -49,6 +49,20 @@ export class CreateCities1634239761330 implements MigrationInterface {
 						isNullable: true,
 					},
 					{
+						name: 'description',
+						type: 'varchar',
+						isNullable: true,
+					},
+					{
+						name: 'tourist_places',
+						type: 'varchar',
+						isNullable: true,
+					},
+					{
+						name: 'author',
+						type: 'varchar',
+					},
+					{
 						name: 'created_at',
 						type: 'timestamp with time zone',
 						default: 'now()',
@@ -57,6 +71,14 @@ export class CreateCities1634239761330 implements MigrationInterface {
 						name: 'updated_at',
 						type: 'timestamp with time zone',
 						default: 'now()',
+					},
+				],
+				foreignKeys: [
+					{
+						name: 'FKUser',
+						referencedTableName: 'users',
+						referencedColumnNames: ['id'],
+						columnNames: ['author'],
 					},
 				],
 			}),
