@@ -1,5 +1,3 @@
-import { IUser } from '@modules/users/domain/models/IUser';
-
 export interface ICity {
 	id: string;
 	name: string;
@@ -11,7 +9,7 @@ export interface ICity {
 	image: string;
 	description: string;
 	tourist_places: string;
-	author: IUser;
+	author: string;
 	created_at: Date;
 	updated_at: Date;
 	getImageUrl(): string | null;

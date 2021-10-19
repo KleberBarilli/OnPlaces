@@ -18,11 +18,6 @@ export class CreateCities1634239761330 implements MigrationInterface {
 						type: 'varchar',
 					},
 					{
-						name: 'description',
-						type: 'varchar',
-						isNullable: true,
-					},
-					{
 						name: 'state',
 						type: 'varchar',
 						isNullable: true,
@@ -60,7 +55,7 @@ export class CreateCities1634239761330 implements MigrationInterface {
 					},
 					{
 						name: 'author',
-						type: 'varchar',
+						type: 'uuid',
 					},
 					{
 						name: 'created_at',

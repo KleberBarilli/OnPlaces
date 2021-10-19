@@ -29,7 +29,7 @@ export default class UpdateCitieservice {
 			throw new AppError('City Not found');
 		}
 
-		await RedisCache.invalidate(`user-cities-${author.id}`);
+		await RedisCache.invalidate(`user-cities-${author}`);
 
 		city.name = name;
 		city.state = state;

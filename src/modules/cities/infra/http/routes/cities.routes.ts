@@ -6,8 +6,6 @@ import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
 const citiesRouter = Router();
 const citiesController = new CitiesController();
 
-citiesRouter.get('/', citiesController.index);
-
 citiesRouter.get(
 	'/user/:id',
 	celebrate({
@@ -15,11 +13,10 @@ citiesRouter.get(
 			id: Joi.string().uuid().required(),
 		},
 	}),
-	citiesController.index_user_cities,
+	citiesController.userIndex,
 );
 
-citiesRouter.use(isAuthenticated);
-
+citiesRouter.get('/', citiesController.index);
 citiesRouter.get(
 	'/:id',
 	celebrate({
@@ -29,6 +26,8 @@ citiesRouter.get(
 	}),
 	citiesController.show,
 );
+
+citiesRouter.use(isAuthenticated);
 
 citiesRouter.post(
 	'/',

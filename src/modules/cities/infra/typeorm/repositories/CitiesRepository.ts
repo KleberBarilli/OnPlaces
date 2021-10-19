@@ -44,14 +44,6 @@ export default class CitiesRepository implements ICitiesRepository {
 		return cities;
 	}
 
-	public async findAll_User_Cities(author_id: string): Promise<City[] | any> {
-		const cities = await this.ormRepository.createQueryBuilder().where({
-			author: author_id,
-		});
-
-		return cities;
-	}
-
 	public async create({
 		name,
 		state,
@@ -90,5 +82,19 @@ export default class CitiesRepository implements ICitiesRepository {
 
 	public async remove(city: City): Promise<void> {
 		await this.ormRepository.remove(city);
+	}
+
+	public async findAllByUserId(id: string): Promise<IPaginateCity> {
+		const city = await this.ormRepository
+			.createQueryBuilder()
+			.where({
+				author: id,
+			})
+			.orderBy({
+				name: 'DESC',
+			})
+			.paginate();
+
+		return city as IPaginateCity;
 	}
 }

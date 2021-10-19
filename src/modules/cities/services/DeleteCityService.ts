@@ -16,7 +16,7 @@ export default class DeleteCityservice {
 			throw new AppError('City Not found');
 		}
 
-		await RedisCache.invalidate(`user-cities-${city.author.id}`);
+		await RedisCache.invalidate(`user-cities-${city.author}`);
 
 		await this.citiesRepository.remove(city);
 	}

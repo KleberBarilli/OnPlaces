@@ -1,5 +1,3 @@
-import { IUser } from '@modules/users/domain/models/IUser';
-
 export interface IUpdateCity {
 	id: string;
 	name: string;
@@ -11,5 +9,5 @@ export interface IUpdateCity {
 	image: string;
 	description: string;
 	tourist_places: string;
-	author: IUser;
+	author: string;
 }

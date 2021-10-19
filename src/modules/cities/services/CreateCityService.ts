@@ -9,7 +9,7 @@ import { IUsersRepository } from '@modules/users/domain/repositories/IUsersRepos
 @injectable()
 export default class CreateCityService {
 	constructor(
-		@inject('CitysRepository') private citiesRepository: ICitiesRepository,
+		@inject('CitiesRepository') private citiesRepository: ICitiesRepository,
 		@inject('UsersRepository') private usersRepository: IUsersRepository,
 	) {}
 	// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -25,7 +25,7 @@ export default class CreateCityService {
 		tourist_places,
 		author,
 	}: ICreateCity): Promise<ICity> {
-		const author_id = await this.usersRepository.findById(author.id);
+		const author_id = await this.usersRepository.findById(author);
 
 		if (!author_id) {
 			throw new AppError('Error with Author User');
@@ -44,7 +44,7 @@ export default class CreateCityService {
 			author,
 		});
 
-		await RedisCache.invalidate(`user-cities-${author.id}`);
+		await RedisCache.invalidate(`user-cities-${author}`);
 
 		return city;
 	}

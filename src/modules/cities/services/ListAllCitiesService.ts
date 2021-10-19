@@ -1,3 +1,4 @@
+import RedisCache from '@shared/cache/RedisCache';
 import { inject, injectable } from 'tsyringe';
 import { IPaginateCity } from '../domain/models/IPaginateCity';
 import { ICitiesRepository } from '../domain/repositories/ICitiesRepository';
@@ -12,12 +13,18 @@ export default class ListUserService {
 	public async execute(
 		search = '',
 		sortField = 'name',
-	): Promise<IPaginateCity> {
-		const cities = await this.citiesRepository.findAllPaginate(
-			search,
-			sortField,
-		);
+	): Promise<IPaginateCity | null> {
+		let listCities = await RedisCache.recover<IPaginateCity>(`user-cities`);
 
-		return cities;
+		if (!listCities) {
+			const cities = await this.citiesRepository.findAllPaginate(
+				search,
+				sortField,
+			);
+			await RedisCache.save(`user-cities`, cities);
+
+			return cities;
+		}
+		return listCities as IPaginateCity;
 	}
 }

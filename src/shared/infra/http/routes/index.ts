@@ -10,6 +10,6 @@ routes.use('/users', userRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/profile', profileRouter);
 
-routes.use('city', citiesRouter);
+routes.use('/city', citiesRouter);
 
 export default routes;

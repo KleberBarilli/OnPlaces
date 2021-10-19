@@ -7,6 +7,7 @@ import {
 	CreateDateColumn,
 	JoinColumn,
 	ManyToOne,
+	Generated,
 } from 'typeorm';
 import { Expose } from 'class-transformer';
 
@@ -42,9 +43,13 @@ export default class City {
 	@Column()
 	tourist_places: string;
 
+	@Column()
+	@Generated('uuid')
+	author: string;
+
 	@ManyToOne(() => User)
 	@JoinColumn({ name: 'author' })
-	author: User;
+	user: User;
 
 	@CreateDateColumn()
 	created_at: Date;
