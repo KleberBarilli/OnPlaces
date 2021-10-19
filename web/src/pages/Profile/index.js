@@ -18,11 +18,12 @@ function Profile() {
 	const [imageAvatar, setImageAvatar] = useState(null);
 
 	function handleFile(e){
-		//console.log(e.target.files[0]);
+		console.log(e.target.files[0]);
 		if(e.target.files[0]){
 			const image = e.target.files[0];
 
 			if(image.type === 'image/jpeg' || image.type === 'image/png'){
+				console.log(e.target.files)
 				setImageAvatar(image);
 				setAvatarUrl(URL.createObjectURL(e.target.files[0]))
 			}else {

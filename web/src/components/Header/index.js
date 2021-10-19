@@ -29,7 +29,7 @@ function Header() {
 		  		Todas as cidades
 		  </Link>
 
-		  <Link to="/city">
+		  <Link to="/newcity">
 		  	<FaCity color="#FFF" size={24} />
 		  		Cadastrar uma cidade
 		  </Link>

@@ -27,7 +27,7 @@ function Dashboard() {
 				</div>
 				): (
 					<>
-						<Link className="new" to="/new">
+						<Link className="new" to="/newcity">
 							<FaPlus size={25} color="#FFF"/>
 						Nova cidade
 					</Link>
