@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Like } from 'typeorm';
 import { IPaginateCity } from '@modules/cities/domain/models/IPaginateCity';
 import { ICitiesRepository } from '@modules/cities/domain/repositories/ICitiesRepository';
 import { ICreateCity } from '@modules/cities/domain/models/ICreateCity';
@@ -20,13 +20,22 @@ export default class CitiesRepository implements ICitiesRepository {
 		return city;
 	}
 
-	public async findAllPaginate(): Promise<IPaginateCity> {
-		const cities = await this.ormRepository
+	public async findAllPaginate(
+		search: string,
+		sortField: string,
+	): Promise<IPaginateCity> {
+		if (search) {
+			return (await this.ormRepository
+				.createQueryBuilder()
+				.where([{ name: Like(`%${search}%`) }])
+				.orderBy(`City.name`, 'ASC')
+				.paginate()) as IPaginateCity;
+		}
+
+		return (await this.ormRepository
 			.createQueryBuilder()
-
-			.paginate();
-
-		return cities as IPaginateCity;
+			.orderBy('City.name', 'ASC')
+			.paginate()) as IPaginateCity;
 	}
 
 	public async findAll(): Promise<City[]> {

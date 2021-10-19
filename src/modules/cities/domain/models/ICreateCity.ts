@@ -1,7 +1,6 @@
 import { IUser } from '@modules/users/domain/models/IUser';
 
 export interface ICreateCity {
-	id: string;
 	name: string;
 	state: string;
 	country: string;
