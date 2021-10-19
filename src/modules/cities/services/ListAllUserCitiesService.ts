@@ -4,7 +4,7 @@ import RedisCache from '@shared/cache/RedisCache';
 import { IPaginateCity } from '@modules/cities/domain/models/IPaginateCity';
 
 @injectable()
-export default class ListcitiesService {
+export default class ListAllUserCitiesService {
 	constructor(
 		@inject('CitiesRepository') private citiesRepository: CitiesRepository,
 	) {}
