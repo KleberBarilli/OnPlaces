@@ -62,7 +62,8 @@ export default class City {
 		if (!this.image) {
 			return null;
 		}
+		//console.log(process.env.BASE_AVATAR_URL);
 
-		return `${process.env.BASE_AVATAR_URL}/${this.image}`;
+		return `${process.env.AVATAR_URL}/${this.image}`;
 	}
 }

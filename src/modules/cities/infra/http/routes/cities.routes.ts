@@ -77,11 +77,7 @@ citiesRouter.put(
 	citiesController.update,
 );
 
-citiesRouter.patch(
-	'/avatar',
-	upload.single('avatar'),
-	cityAvatarController.update,
-);
+citiesRouter.patch('/:id', upload.single('image'), cityAvatarController.update);
 
 citiesRouter.delete(
 	'/:id',

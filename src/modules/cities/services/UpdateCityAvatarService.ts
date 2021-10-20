@@ -1,23 +1,23 @@
 import AppError from '@shared/errors/AppError';
-import path from 'path';
-import fs from 'fs';
-import { getCustomRepository } from 'typeorm';
-import City from '../infra/typeorm/entities/City';
-import CitiesRepository from '../infra/typeorm/repositories/CitiesRepository';
 import uploadConfig from '@config/upload';
 import DiskStorageProvider from '@shared/providers/StorageProvider/DiskStorageProvider';
 import S3StorageProvider from '@shared/providers/StorageProvider/S3StorageProvider';
+import { inject, injectable } from 'tsyringe';
+import { ICitiesRepository } from '../domain/repositories/ICitiesRepository';
+import { ICity } from '../domain/models/ICity';
 
 interface IRequest {
 	id: string;
 	avatarFilename: string;
 }
-
+@injectable()
 export default class UpdateCityAvatarService {
-	public async execute({ id, avatarFilename }: IRequest): Promise<City> {
-		const citiesRepository = getCustomRepository(CitiesRepository);
+	constructor(
+		@inject('CitiesRepository') private citiesRepository: ICitiesRepository,
+	) {}
 
-		const city = await citiesRepository.findById(id);
+	public async execute({ id, avatarFilename }: IRequest): Promise<ICity> {
+		const city = await this.citiesRepository.findById(id);
 
 		if (!city) {
 			throw new AppError('City not found');
@@ -39,7 +39,7 @@ export default class UpdateCityAvatarService {
 			city.image = fileName;
 		}
 
-		await citiesRepository.save(city);
+		await this.citiesRepository.save(city);
 
 		return city;
 	}

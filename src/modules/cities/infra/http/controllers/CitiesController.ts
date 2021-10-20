@@ -8,7 +8,7 @@ import DeleteCityService from '@modules/cities/services/DeleteCityService';
 import { classToClass } from 'class-transformer';
 import ListUserCity from '@modules/cities/services/ListUserCity';
 
-export default class citiesController {
+export default class CitiesController {
 	public async index(req: Request, res: Response): Promise<Response> {
 		let search = '';
 		const sortField = String(req.query.sortField);
