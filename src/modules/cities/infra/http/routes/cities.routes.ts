@@ -2,9 +2,15 @@ import { Router } from 'express';
 import CitiesController from '../controllers/CitiesController';
 import { celebrate, Joi, Segments } from 'celebrate';
 import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
+import CityAvatarController from '../controllers/CityAvatarController';
+import multer from 'multer';
+import uploadConfig from '@config/upload';
 
 const citiesRouter = Router();
 const citiesController = new CitiesController();
+const cityAvatarController = new CityAvatarController();
+
+const upload = multer(uploadConfig.multer);
 
 citiesRouter.get(
 	'/user/:id',
@@ -17,6 +23,7 @@ citiesRouter.get(
 );
 
 citiesRouter.get('/', citiesController.index);
+
 citiesRouter.get(
 	'/:id',
 	celebrate({
@@ -68,6 +75,12 @@ citiesRouter.put(
 		},
 	}),
 	citiesController.update,
+);
+
+citiesRouter.patch(
+	'/avatar',
+	upload.single('avatar'),
+	cityAvatarController.update,
 );
 
 citiesRouter.delete(
