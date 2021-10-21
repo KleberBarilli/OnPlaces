@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Overpass');
 
 input, select, textarea{
-	background-color: rgba(24,28,46,0.5);
+	background-color: rgb(218, 235, 250);
 }
+
+
 .tags-input {
 	display: flex;
 	align-items: flex-start;
@@ -11,7 +13,7 @@ input, select, textarea{
 	width: 480px;
 	padding: 0 8px;
 	border: 1px solid rgb(214, 216, 218);
-	border-radius: 6px;
+	border-radius: 6px
 }
 
 #tags {
@@ -131,7 +133,7 @@ input, select, textarea{
 .react-tagsinput-input {
 	background: transparent;
 	border: 0;
-	color: #777;
+	color: rgb(187, 165, 165);
 	font-family: sans-serif;
 	font-size: 13px;
 	font-weight: 400;
@@ -181,3 +183,27 @@ input, select, textarea{
 	font-size: 0.7em;
 	position: relative;
 }
+
+form textarea {
+	height: 105px;
+	resize: none;
+}
+
+.Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+  }
+
+  .Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
+  }
+

@@ -9,9 +9,12 @@ import TagsInput from 'react-tagsinput';
 import { FiUpload } from 'react-icons/fi';
 import api from '../../services/api';
 import { AuthContext } from '../../contexts/auth';
-
+import { toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom';
 
 function NewCity() {
+
+	const history = useHistory();
 	const [valueCountry, setValueCountry] = useState('');
 	const options = useMemo(() => countryList().getData(), []);
 	const { user } = useContext(AuthContext);
@@ -30,20 +33,21 @@ function NewCity() {
 	const [imageCity, setImageCity] = useState();
 	const [imageCityName, setImageCityName] = useState();
 
+
 	useEffect(() => {
 		//console.log(localStorage.getItem('SistemaUser'))
 
 
-		console.log(user.id)
+		//console.log(user.id)
 	  }, []);
 
 	function handleSubmit(e){
 		e.preventDefault();
 
-		if(name && valueCountry && population && latitude && longitude ){
+		if(name && valueCountry && population && latitude && longitude && imageCity ){
 			handleAddCity()
 		}else{
-			alert("Preencha todos os campos obrigatórios")
+			toast.error("Preencha todos os campos obrigatórios")
 		}
 
 	}
@@ -66,7 +70,9 @@ function NewCity() {
 				'Content-Type':'application/json'
 			}
 		}).then((res)=>{
-			alert('enviado')
+			toast.success('Cadastrado com sucesso')
+			history.push('/')
+
 			console.log(res)
 		}).catch((err)=>{
 			console.log(err)
@@ -101,15 +107,12 @@ function NewCity() {
 
 
 	return (
-		<div>
+		<div >
 			<Header />
-
 			<div className="content">
 				<Title name="Nova Cidade">
 					<FaPlusCircle size={25} />
 				</Title>
-
-				<button onClick={()=> console.log(name,state,population,longitude, tags, imageCityUrl, valueCountry.label)}> FSAASF</button>
 				<div className="container">
 					<form className="form-profile" onSubmit={handleSubmit}>
 						<label>Nome da cidade</label>
@@ -155,13 +158,12 @@ function NewCity() {
 							Fale um pouco sobre a cidade
 						</span>
 						<textarea
-							rows="5"
-							cols="60"
-							placeholder="Fique a vontade para digitar sobre qualquer coisa legal"
+							type="text"
+							placeholder="Opcional"
 							name="description"
 							onChange={event => setDescription(event.target.value)}
 						>
-							{' '}
+
 						</textarea>
 						<label style={{ marginTop: 15 }}>
 							Pontos Turísticos - Adicione abaixo, os principais
@@ -170,7 +172,7 @@ function NewCity() {
 						<TagsInput value={tags} onChange={handleChange} />
 
 						<label style={{ marginTop: 15 }}>
-							Adicione uma foto para representar a cidade
+							Adicione uma foto para representar a cidade - Opcional
 						</label>
 
 						<label
@@ -192,8 +194,8 @@ function NewCity() {
 						<button  className="btn-save-city" type="submit">
 							Salvar
 						</button>
-
 					</form>
+
 				</div>
 			</div>
 		</div>
