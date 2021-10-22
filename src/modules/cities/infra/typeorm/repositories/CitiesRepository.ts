@@ -20,6 +20,15 @@ export default class CitiesRepository implements ICitiesRepository {
 		return city;
 	}
 
+	public async findByName(name: string): Promise<City[] | undefined> {
+		const city = this.ormRepository.find({
+			where: {
+				name,
+			},
+		});
+		return city;
+	}
+
 	public async findAllPaginate(
 		search: string,
 		sortField: string,

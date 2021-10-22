@@ -6,8 +6,11 @@ import { container } from 'tsyringe';
 export default class CityAvatarController {
 	public async update(req: Request, res: Response): Promise<Response> {
 		const updateAvatar = container.resolve(UpdateCityAvatarService);
+		
+		console.log(req)
 
 		const { id } = req.params;
+		console.log(req.file.filename,'AAA')
 
 		const city = await updateAvatar.execute({
 			id,

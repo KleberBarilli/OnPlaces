@@ -7,6 +7,7 @@ import Updatecitieservice from '@modules/cities/services/UpdateCityService';
 import DeleteCityService from '@modules/cities/services/DeleteCityService';
 import { classToClass } from 'class-transformer';
 import ListUserCity from '@modules/cities/services/ListUserCity';
+import ListCityByNameService from '@modules/cities/services/ListCityByNameService';
 
 export default class CitiesController {
 	public async index(req: Request, res: Response): Promise<Response> {
@@ -32,6 +33,16 @@ export default class CitiesController {
 		const city = await showCity.execute({ id });
 
 		return res.json(city);
+	}
+
+	public async showByName(req: Request, res: Response): Promise<Response> {
+		const { name } = req.params;
+
+		const showCityName = container.resolve(ListCityByNameService);
+
+		const cities = await showCityName.execute({ name });
+
+		return res.json(cities);
 	}
 
 	public async create(req: Request, res: Response): Promise<Response> {
