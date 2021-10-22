@@ -10,11 +10,13 @@ import '@shared/errors/AppError';
 import AppError from '@shared/errors/AppError';
 import { errors } from 'celebrate';
 import { pagination } from 'typeorm-pagination';
+import rateLimiter from '../http/middlewares/rateLimiter';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(rateLimiter);
 app.use(pagination);
 app.use(routes);
 app.use(errors());
