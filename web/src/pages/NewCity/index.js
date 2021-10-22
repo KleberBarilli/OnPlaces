@@ -10,17 +10,18 @@ import { FiUpload } from 'react-icons/fi';
 import api from '../../services/api';
 import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 function NewCity() {
 
 	const history = useHistory();
+	const { id } = useParams();
+
 	const [valueCountry, setValueCountry] = useState('');
 	const options = useMemo(() => countryList().getData(), []);
 	const { user } = useContext(AuthContext);
+	const [isEdit, setIsEdit] = useState(false);
 
-	// Prop City
-	const [values, setValues] = useState({});
 	const [name, setName] = useState();
 	const [state, setState] = useState();
 	const [country, setCountry] = useState();
@@ -37,23 +38,72 @@ function NewCity() {
 	useEffect(() => {
 		//console.log(localStorage.getItem('SistemaUser'))
 
-
+		if (id) {
+			setIsEdit(true);
+			console.log(id)
+			loadId()
+		}
 		//console.log(user.id)
-	  }, []);
+	}, []);
 
-	function handleSubmit(e){
+	function handleSubmit(e) {
 		e.preventDefault();
 
-		if(name && valueCountry && population && latitude && longitude && imageCity ){
-			handleAddCity()
-		}else{
+		if (name && valueCountry && population && latitude && longitude && imageCity) {
+			if (isEdit) {
+				handleUpdate()
+			} else {
+				handleAddCity()
+			}
+
+		} else {
 			toast.error("Preencha todos os campos obrigatórios")
 		}
 
 	}
+	async function loadId() {
+		await api.get(`/city/${id}`,
+			{
+				headers: {
+					'Authorization': `Bearer ${user.token}`,
+					'Content-Type': 'application/json'
+				}
+			}).then((res) => {
+				alert(country)
+				setName(res.data.name)
+				setState(res.data.state)
+				setValueCountry(res.data.valueCountry)
+				setPopulation(res.data.population)
+				setLatitude(res.data.latitude)
+				setLongitude(res.data.longitude)
+				setDescription(res.data.description)
+				toast.success(res)
+			}).catch((err) => {
+				toast.error(err)
+			})
+	}
 
-	async function handleAddCity(){
-		await api.post(`${process.env.REACT_APP_BASE_URL}/city`,{
+	async function uploadHandler ()  {
+		const formData = new FormData()
+		formData.append(
+		  'image',
+		  imageCity,
+		  imageCity.name
+		)
+		api.patch(`/city/${id}`, formData, {
+			headers: {
+				'Authorization': `Bearer ${user.token}`
+			}
+		}).then((res)=>{
+			history.push('/')
+		}).catch((err)=>{
+			console.log(err)
+		})
+	  }
+
+
+	async function handleAddCity() {
+		await api.post(`/city`, {
 			name: name,
 			state: state,
 			country: valueCountry.label,
@@ -62,23 +112,46 @@ function NewCity() {
 			longitude: longitude,
 			description: description,
 			tourist_places: tags.toString(),
-			image: imageCity.name,
 			author: user.id
-		},{
+		}, {
 			headers: {
 				'Authorization': `Bearer ${user.token}`,
-				'Content-Type':'application/json'
+				'Content-Type': 'application/json'
 			}
-		}).then((res)=>{
+		}).then((res) => {
 			toast.success('Cadastrado com sucesso')
-			history.push('/')
+			uploadHandler()
 
 			console.log(res)
-		}).catch((err)=>{
+		}).catch((err) => {
 			console.log(err)
 		})
 	}
+	async function handleUpdate() {
+		await api.put(`/city/${id}`, {
+			name: name,
+			state: state,
+			country: valueCountry.label,
+			population: population,
+			latitude: latitude,
+			longitude: longitude,
+			description: description,
+			tourist_places: tags.toString(),
+			author: user.id
+		}, {
+			headers: {
+				'Authorization': `Bearer ${user.token}`,
+				'Content-Type': 'application/json'
+			}
+		}).then((res) => {
+			toast.success('Editado com sucesso')
+			uploadHandler();
 
+			console.log(res)
+		}).catch((err) => {
+			console.log(err)
+		})
+	}
 
 	function handleFile(e) {
 		setImageCityName(e.target.files[0].name)
@@ -118,11 +191,13 @@ function NewCity() {
 						<label>Nome da cidade</label>
 						<input
 							type="text"
+							value={name}
 							onChange={event => setName(event.target.value)}
 						/>
 						<label>Estado</label>
 						<input
 							type="text"
+							value={state}
 							name="state"
 							onChange={event => setState(event.target.value)}
 						/>
@@ -137,18 +212,21 @@ function NewCity() {
 						<label>População</label>
 						<input
 							type="number"
+							value={population}
 							name="population"
 							onChange={event => setPopulation(event.target.value)}
 						/>
 						<label>Latitude</label>
 						<input
 							type="number"
+							value={latitude}
 							name="latitude"
 							onChange={event => setLatitude(event.target.value)}
 						/>
 						<label>Longitude</label>
 						<input
 							type="number"
+							value={longitude}
 							name="longitude"
 							onChange={event => setLongitude(event.target.value)}
 						/>
@@ -160,6 +238,7 @@ function NewCity() {
 						<textarea
 							type="text"
 							placeholder="Opcional"
+							value={description}
 							name="description"
 							onChange={event => setDescription(event.target.value)}
 						>
@@ -183,6 +262,7 @@ function NewCity() {
 								<FiUpload color="#4287f5" size={50} />
 							</span>
 							<input
+
 								type="file"
 								accept="image/*"
 								onChange={handleFile}
@@ -191,9 +271,12 @@ function NewCity() {
 							<br />
 
 						</label>
-						<button  className="btn-save-city" type="submit">
+
+
+						<button className="btn-save-city" type="submit">
 							Salvar
 						</button>
+
 					</form>
 
 				</div>
