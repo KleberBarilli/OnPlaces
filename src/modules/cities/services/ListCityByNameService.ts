@@ -1,3 +1,4 @@
+import RedisCache from '@shared/cache/RedisCache';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { ICity } from '../domain/models/ICity';
@@ -11,10 +12,6 @@ export default class ListCityByNameService {
 	) {}
 	async execute({ name }: IListCityName): Promise<ICity[] | undefined> {
 		const city = await this.citiesRepository.findByName(name);
-
-		if (!city) {
-			throw new AppError('City Not found');
-		}
 
 		return city;
 	}

@@ -44,7 +44,9 @@ export default class CreateCityService {
 			author,
 		});
 
-		await RedisCache.invalidate(`user-cities-${author}`);
+		await RedisCache.invalidate(`cities`);
+		await RedisCache.invalidate(`user-cities${author_id}`);
+		await RedisCache.invalidate(`user-city-name`);
 
 		return city;
 	}

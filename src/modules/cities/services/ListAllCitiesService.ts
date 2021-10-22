@@ -14,14 +14,14 @@ export default class ListUserService {
 		search = '',
 		sortField = 'name',
 	): Promise<IPaginateCity | null> {
-		let listCities = await RedisCache.recover<IPaginateCity>(`user-cities`);
+		let listCities = await RedisCache.recover<IPaginateCity>(`cities`);
 
 		if (!listCities) {
 			const cities = await this.citiesRepository.findAllPaginate(
 				search,
 				sortField,
 			);
-			await RedisCache.save(`user-cities`, cities);
+			await RedisCache.save(`cities`, cities);
 
 			return cities;
 		}
