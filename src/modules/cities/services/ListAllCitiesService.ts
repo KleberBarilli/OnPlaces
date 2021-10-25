@@ -13,15 +13,16 @@ export default class ListUserService {
 	public async execute(
 		search = '',
 		sortField = 'name',
+		reqUrl
 	): Promise<IPaginateCity | null> {
-		let listCities = await RedisCache.recover<IPaginateCity>(`cities`);
+		let listCities = await RedisCache.recover<IPaginateCity>(`cities${reqUrl}`);
 
 		if (!listCities) {
 			const cities = await this.citiesRepository.findAllPaginate(
 				search,
 				sortField,
 			);
-			await RedisCache.save(`cities`, cities);
+			await RedisCache.save(`cities${reqUrl}`, cities);
 
 			return cities;
 		}

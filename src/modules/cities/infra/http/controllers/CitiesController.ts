@@ -13,6 +13,7 @@ export default class CitiesController {
 	public async index(req: Request, res: Response): Promise<Response> {
 		let search = '';
 		const sortField = String(req.query.sortField);
+		const reqUrl = req.url
 
 		if (req.query.search) {
 			search = String(req.query.search);
@@ -20,7 +21,7 @@ export default class CitiesController {
 
 		const listCities = container.resolve(ListAllCitiesService);
 
-		const cities = await listCities.execute(search, sortField);
+		const cities = await listCities.execute(search, sortField, reqUrl);
 
 		return res.json(classToClass(cities));
 	}
