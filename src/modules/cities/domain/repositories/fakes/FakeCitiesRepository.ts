@@ -49,9 +49,17 @@ export default class FakeCitiesRepository implements ICitiesRepository {
 		return city;
 	}
 
-	public async findByName(name: string): Promise<City | undefined> {
-		const city = this.cities.find(city => city.name === name);
-		return city;
+	public async findByName(name: string): Promise<City[] | undefined> {
+		const city = [];
+
+		this.cities.forEach(element => {
+			if (element.name === name) {
+				city.push(element);
+				this.cities.push(element);
+			}
+		});
+
+		return this.cities;
 	}
 
 	public async findById(id: string): Promise<City | undefined> {
@@ -74,8 +82,9 @@ export default class FakeCitiesRepository implements ICitiesRepository {
 			next_page: null,
 			data: this.cities,
 		};
+		const city = citiesPaginate.data.find(city => city.author === id);
 
-		return citiesPaginate;
+		return city as any;
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-empty-function

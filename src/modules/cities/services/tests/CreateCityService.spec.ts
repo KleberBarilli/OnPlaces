@@ -34,12 +34,4 @@ describe('CreateCity', () => {
 
 		expect(city).toHaveProperty('id');
 	});
-
-	it('Should not be able to create without author_id', async () => {
-		const author_id = await fakeUsersRepository.findById('id');
-
-		console.log(author_id);
-
-		expect(author_id).resolves.toBeInstanceOf(AppError);
-	});
 });

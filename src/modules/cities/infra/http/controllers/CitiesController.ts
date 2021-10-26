@@ -6,7 +6,7 @@ import Createcitieservice from '@modules/cities/services/CreateCityService';
 import Updatecitieservice from '@modules/cities/services/UpdateCityService';
 import DeleteCityService from '@modules/cities/services/DeleteCityService';
 import { classToClass } from 'class-transformer';
-import ListUserCity from '@modules/cities/services/ListUserCity';
+import ListUserCityService from '@modules/cities/services/ListUserCityService';
 import ListCityByNameService from '@modules/cities/services/ListCityByNameService';
 
 export default class CitiesController {
@@ -123,7 +123,7 @@ export default class CitiesController {
 	}
 
 	public async userIndex(req: Request, res: Response): Promise<Response> {
-		const list = container.resolve(ListUserCity);
+		const list = container.resolve(ListUserCityService);
 		const { id } = req.params;
 
 		const cities = await list.execute(id);
