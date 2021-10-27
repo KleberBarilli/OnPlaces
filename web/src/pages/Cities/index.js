@@ -28,7 +28,7 @@ function Cities() {
 		await api
 			.get(`/city?page=${page}`, {
 				params: {
-					per_page: 5,
+					per_page: 10,
 				},
 			})
 			.then(res => {
@@ -87,7 +87,7 @@ function Cities() {
 				{cities.length === 0 ? (
 					<div className="container dashboard">
 						<span>Nenhuma cidade registrada...</span>
-						<Link className="new" to="/new">
+						<Link className="new" to="/newcity">
 							<FaPlus size={25} color="#FFF" />
 							Nova cidade
 						</Link>
@@ -106,7 +106,6 @@ function Cities() {
 									<th scope="col">Estado</th>
 									<th scope="col">País</th>
 									<th scope="col">População</th>
-									<th scope="col">Cadastrado em</th>
 									<th scope="col">#</th>
 								</tr>
 							</thead>
@@ -125,9 +124,6 @@ function Cities() {
 											</td>
 											<td data-label="População">
 												{item.population}
-											</td>
-											<td data-label="Cadastrado">
-												{item.created_at}
 											</td>
 											<td data-label="#">
 												<button

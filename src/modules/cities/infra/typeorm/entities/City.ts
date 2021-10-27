@@ -28,10 +28,10 @@ export default class City {
 	@Column()
 	population: number;
 
-	@Column()
+	@Column({ precision: 10, scale: 8 })
 	latitude: number;
 
-	@Column()
+	@Column({ precision: 11, scale: 8 })
 	longitude: number;
 
 	@Column()

@@ -28,7 +28,7 @@ export default class UpdateCitieservice {
 		if (!city) {
 			throw new AppError('City Not found');
 		}
-
+		console.log(description);
 		city.name = name;
 		city.state = state;
 		city.country = country;
@@ -37,10 +37,12 @@ export default class UpdateCitieservice {
 		city.longitude = longitude;
 		city.image = image;
 		city.description = description;
+		console.log(description);
 		city.tourist_places = tourist_places;
 		city.author = author;
 
 		await this.citiesRepository.save(city);
+		console.log(city);
 
 		await RedisCache.invalidate(`cities`);
 		await RedisCache.invalidate(`user-cities${author}`);

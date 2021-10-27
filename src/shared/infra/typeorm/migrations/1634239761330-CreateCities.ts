@@ -32,11 +32,11 @@ export class CreateCities1634239761330 implements MigrationInterface {
 					},
 					{
 						name: 'latitude',
-						type: 'int',
+						type: 'decimal',
 					},
 					{
 						name: 'longitude',
-						type: 'int',
+						type: 'decimal',
 					},
 					{
 						name: 'image',

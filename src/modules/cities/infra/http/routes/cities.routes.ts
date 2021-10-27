@@ -64,8 +64,16 @@ citiesRouter.put(
 			state: Joi.string(),
 			country: Joi.string().required(),
 			population: Joi.number().required(),
-			latitude: Joi.number().required(),
-			longitude: Joi.number().required(),
+			latitude: Joi.number()
+				.min(-90)
+				.max(90)
+				.required()
+				.description('Use o formato correto de latitude'),
+			longitude: Joi.number()
+				.min(-180)
+				.max(180)
+				.required()
+				.description('Use o formato correto de longitude'),
 			image: Joi.string(),
 			description: Joi.string(),
 			tourist_places: Joi.string(),

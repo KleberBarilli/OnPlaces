@@ -94,14 +94,18 @@ function NewCity() {
 				'Authorization': `Bearer ${user.token}`
 			}
 		}).then((res)=>{
-			history.push('/')
+			history.push('/cities')
 		}).catch((err)=>{
 			console.log(err)
+			toast.error('Houve um erro ao enviar, confira os campos')
 		})
 	  }
 
 
 	async function handleAddCity() {
+		if(!state){
+			setState(' ')
+		}
 		await api.post(`/city`, {
 			name: name,
 			state: state,
@@ -124,9 +128,13 @@ function NewCity() {
 			console.log(res)
 		}).catch((err) => {
 			console.log(err)
+			toast.error('Houve um erro ao enviar, confira os campos')
 		})
 	}
 	async function handleUpdate() {
+		if(!state){
+			setState(' ')
+		}
 		await api.put(`/city/${id}`, {
 			name: name,
 			state: state,
@@ -146,9 +154,10 @@ function NewCity() {
 			toast.success('Editado com sucesso')
 			uploadHandler(id);
 
-			console.log(res)
+			console.log(res.data)
 		}).catch((err) => {
 			console.log(err)
+			toast.error('Houve um erro ao enviar, confira os campos')
 		})
 	}
 
@@ -217,14 +226,12 @@ function NewCity() {
 						/>
 						<label>Latitude</label>
 						<input
-							type="number"
 							value={latitude}
 							name="latitude"
 							onChange={event => setLatitude(event.target.value)}
 						/>
 						<label>Longitude</label>
 						<input
-							type="number"
 							value={longitude}
 							name="longitude"
 							onChange={event => setLongitude(event.target.value)}
@@ -250,7 +257,7 @@ function NewCity() {
 						<TagsInput value={tags} onChange={handleChange} />
 
 						<label style={{ marginTop: 15 }}>
-							Adicione uma foto para representar a cidade - Opcional
+							Adicione uma foto para representar a cidade
 						</label>
 
 						<label
