@@ -37,6 +37,6 @@ export default class User implements IUser {
 		if (!this.avatar) {
 			return null;
 		}
-		return `${process.env.APP_API_URL}/files/${this.avatar}`;
+		return `${process.env.USER_AVATAR_URL}/${this.avatar}`;
 	}
 }

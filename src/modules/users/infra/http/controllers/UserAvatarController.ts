@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import UpdateCityAvatarService from '@modules/cities/services/UpdateCityAvatarService';
+import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 import { classToClass } from 'class-transformer';
 import { container } from 'tsyringe';
 
-export default class CityAvatarController {
+export default class UserAvatarController {
 	public async update(req: Request, res: Response): Promise<Response> {
-		const updateAvatar = container.resolve(UpdateCityAvatarService);
+		const updateAvatar = container.resolve(UpdateUserAvatarService);
 
 		const { id } = req.params;
 
