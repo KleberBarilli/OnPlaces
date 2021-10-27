@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 .sidebar{
 	margin: 0;
 	padding: 0;
@@ -16,17 +18,21 @@
 	background-size: cover;
 	height: 150px;
 	padding-top: 30px;
+
 }
 
 .sidebar div img{
-	border-radius: 50%;
+	border-radius: 90%;
 	display: block;
 	margin: auto;
 	width: 90px;
 	height: 90px;
 	-webkit-filter: drop-shadow(2px 3px 6px #121212);
 	filter: drop-shadow(2px 3px 6px #121212);
-	object-fit: cover;
+	object-fit:cover;
+	border:3px black solid
+
+
 }
 
 .sidebar a{
@@ -52,6 +58,17 @@
 .content{
 	margin-left: 200px;
 	padding: 1px 16px;
+}
+
+.welcome{
+	display: flex;
+	justify-content: center;
+	color: #fff;
+	font-weight: bold;
+	margin-top: 10px;
+	font-family: 'Architects Daughte', cursive;
+	font-size: 14pt;
+
 }
 
 @media screen and (max-width: 700px){

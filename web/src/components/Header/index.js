@@ -1,5 +1,5 @@
 import './header.css';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext}  from '../../contexts/auth';
 import avatar from '../../assets/avatar.png';
 
@@ -16,10 +16,11 @@ function Header() {
 
 
 
+
   return(
 	  <div className="sidebar">
 		  <div>
-		  	<img src={user.avatarUrl === null || undefined ? avatar : user.avatarUrl } alt="Foto avatar" />
+		  	<img src={user.avatarUrl === null || undefined ? avatar : `${process.env.REACT_APP_S3_URL}${user.avatarUrl}` } alt="Foto avatar" /><span className="welcome">Welcome {user.name}</span>
 		  </div>
 		  <Link to="/dashboard">
 		  	<FiHome color="#FFF" size={24} />
