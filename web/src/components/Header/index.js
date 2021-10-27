@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom';
 import { FiSettings, FiHome } from 'react-icons/fi';
 import { FaCity } from 'react-icons/fa';
 import { BiWorld } from 'react-icons/bi';
-import { MdTravelExplore } from "react-icons/md";
+import { MdLogout, MdTravelExplore } from "react-icons/md";
 
 
 function Header() {
 
-	const { user } = useContext(AuthContext);
+	const { user, signOut } = useContext(AuthContext);
+
+
 
   return(
 	  <div className="sidebar">
@@ -42,6 +44,12 @@ function Header() {
 		  <Link to="/profile">
 		  	<FiSettings color="#FFF" size={24} />
 		  		Configurações da Conta
+		  </Link>
+
+
+		  <Link onClick={signOut}>
+		  	<MdLogout color="#FFF" size={24} />
+		  		Logout
 		  </Link>
 
 
