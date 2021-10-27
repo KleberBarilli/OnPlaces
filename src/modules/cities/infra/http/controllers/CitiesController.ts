@@ -8,6 +8,7 @@ import DeleteCityService from '@modules/cities/services/DeleteCityService';
 import { classToClass } from 'class-transformer';
 import ListUserCityService from '@modules/cities/services/ListUserCityService';
 import ListCityByNameService from '@modules/cities/services/ListCityByNameService';
+import FindAllCitiesService from '@modules/cities/services/FindAllCitiesService';
 
 export default class CitiesController {
 	public async index(req: Request, res: Response): Promise<Response> {
@@ -21,6 +22,14 @@ export default class CitiesController {
 		const listCities = container.resolve(ListAllCitiesService);
 
 		const cities = await listCities.execute(search, sortField);
+
+		return res.json(classToClass(cities));
+	}
+
+	public async findAll(req: Request, res: Response): Promise<Response> {
+		const listCities = container.resolve(FindAllCitiesService);
+
+		const cities = await listCities.execute();
 
 		return res.json(classToClass(cities));
 	}

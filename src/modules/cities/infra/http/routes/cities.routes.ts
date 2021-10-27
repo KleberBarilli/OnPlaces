@@ -23,6 +23,7 @@ citiesRouter.get(
 );
 
 citiesRouter.get('/', citiesController.index);
+citiesRouter.get('/all', citiesController.findAll);
 citiesRouter.get('/byname/:name', citiesController.showByName);
 
 citiesRouter.get(

@@ -41,6 +41,13 @@
 
 }
 
+.flag-title{
+	background-color: rgba(24, 28, 46, 1);
+	border-radius: 10px;
+	color: #fff;
+
+}
+
 
 @media screen and (max-width: 100px) {
 	.city-image {

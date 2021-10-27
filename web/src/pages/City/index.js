@@ -60,8 +60,8 @@ function City() {
 		<div>
 			<Header />
 			<div className="content">
-				<div></div>
-				<Title name={`${city.name} - ${city.country}`}>
+				<div className="flag-title">
+				<Title name={`${city.name} ${city.state?city.state:''} - ${city.country}`}>
 					<ReactCountryFlag
 						className="emojiFlag"
 						countryCode={countryCode}
@@ -72,6 +72,7 @@ function City() {
 						aria-label={city.country}
 					/>
 				</Title>
+				</div>
 				<div className="container">
 					<ul className="infos">
 						<li>
