@@ -11,6 +11,7 @@ import AppError from '@shared/errors/AppError';
 import { errors } from 'celebrate';
 import { pagination } from 'typeorm-pagination';
 import rateLimiter from '../http/middlewares/rateLimiter';
+import { types } from 'pg';
 
 const app = express();
 
@@ -20,6 +21,10 @@ app.use(rateLimiter);
 app.use(pagination);
 app.use(routes);
 app.use(errors());
+
+types.setTypeParser(1700, val => {
+	return parseFloat(val);
+});
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 	if (error instanceof AppError) {
