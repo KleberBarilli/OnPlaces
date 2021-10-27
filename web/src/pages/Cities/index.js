@@ -6,8 +6,11 @@ import Title from '../../components/Title';
 import { FaCity, FaPlus, FaSearchPlus, FaEdit } from 'react-icons/fa';
 import api from '../../services/api';
 import { PageActions } from '../../components/Pageaction';
+import { useHistory } from 'react-router-dom';
 
 function Cities() {
+	const history = useHistory();
+
 	const [page, setPage] = useState(1);
 	const [totalPage, setTotalPage] = useState();
 
@@ -67,6 +70,10 @@ function Cities() {
 		}
 
 		setLoadingMore(false);
+	}
+
+	function handleSearch(name){
+		history.push(`city/${name}`)
 	}
 
 	return (
@@ -133,6 +140,7 @@ function Cities() {
 													<FaSearchPlus
 														color="#000"
 														size={17}
+														onClick={()=>handleSearch(item.id)}
 													/>
 												</button>
 												<Link

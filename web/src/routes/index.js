@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import NewCity from '../pages/NewCity';
 import Cities from '../pages/Cities';
+import City from '../pages/City';
 
 export default function Routes(){
 	return(
@@ -14,6 +15,7 @@ export default function Routes(){
 			<Route exact path="/" component={SignIn} />
 			<Route exact path="/register" component={SignUp} />
 			<Route exact path="/cities" isPrivate component={Cities} />
+			<Route exact path="/city/:id" isPrivate component={City} />
 			<Route exact path="/dashboard" component={Dashboard} isPrivate />
 			<Route exact path="/profile" component={Profile} isPrivate />
 			<Route exact path="/newcity" component={NewCity} isPrivate />

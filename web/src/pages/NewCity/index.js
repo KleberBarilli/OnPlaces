@@ -69,7 +69,6 @@ function NewCity() {
 					'Content-Type': 'application/json'
 				}
 			}).then((res) => {
-				alert(country)
 				setName(res.data.name)
 				setState(res.data.state)
 				setValueCountry(res.data.valueCountry)
@@ -83,14 +82,14 @@ function NewCity() {
 			})
 	}
 
-	async function uploadHandler ()  {
+	async function uploadHandler (cityId)  {
 		const formData = new FormData()
 		formData.append(
 		  'image',
 		  imageCity,
 		  imageCity.name
 		)
-		api.patch(`/city/${id}`, formData, {
+		api.patch(`/city/${cityId}`, formData, {
 			headers: {
 				'Authorization': `Bearer ${user.token}`
 			}
@@ -120,7 +119,7 @@ function NewCity() {
 			}
 		}).then((res) => {
 			toast.success('Cadastrado com sucesso')
-			uploadHandler()
+			uploadHandler(res.data.id)
 
 			console.log(res)
 		}).catch((err) => {
@@ -145,7 +144,7 @@ function NewCity() {
 			}
 		}).then((res) => {
 			toast.success('Editado com sucesso')
-			uploadHandler();
+			uploadHandler(id);
 
 			console.log(res)
 		}).catch((err) => {
