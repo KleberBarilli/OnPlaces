@@ -79,6 +79,7 @@ export default function Dashboard() {
 	//   mapbox://styles/mapbox/navigation-day-v1
 	//   mapbox://styles/mapbox/navigation-night-v1
 
+
   return (
     <div>
 			<Header />
@@ -100,8 +101,11 @@ export default function Dashboard() {
       >
         <Pins data={cities} onClick={setPopupInfo} />
 
+
         {popupInfo && (
+			<Link to={`/city/${popupInfo.id}`} target="_blank" rel="noopener noreferrer">
           <Popup
+			className="fuck"
             tipSize={5}
             anchor="top"
             longitude={popupInfo.longitude}
@@ -111,7 +115,9 @@ export default function Dashboard() {
           >
             <CityInfo info={popupInfo} />
           </Popup>
+		  </Link>
         )}
+
 
         <GeolocateControl style={geolocateStyle} />
         <FullscreenControl style={fullscreenControlStyle} />

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 function CityInfo(props) {
-  const {info} = props;
+  const { info } = props;
   const displayName = `${info.name}`;
 
   return (
@@ -12,7 +12,7 @@ function CityInfo(props) {
           target="_new"
           href={`http://en.wikipedia.org/w/index.php?title=Special:Search&search=${displayName}`}
         >
-          Wikipedia
+          aa
         </a>
       </div>
 

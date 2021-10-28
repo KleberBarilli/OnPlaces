@@ -84,6 +84,11 @@ table td .badge{
 	color: #FFF;
 }
 
+.fuck{
+	background-color: blue;
+	cursor: pointer;
+}
+
 @media screen and (max-width: 600px){
 	table{
 		border: 0;

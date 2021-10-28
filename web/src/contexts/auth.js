@@ -91,6 +91,8 @@ function AuthProvider({children}){
 	function signOut(){
 		localStorage.removeItem('SistemaUser');
         setUser(null);
+		// eslint-disable-next-line no-restricted-globals
+		location.reload()
 	}
 
 
