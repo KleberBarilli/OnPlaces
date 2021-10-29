@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
 
 .city-image {
-	width: 100%;
+	width: 70%;
 	height: 420px;
 	border: 5px solid #444;
-
+	margin-left: auto;
 	margin-right: auto;
 }
 
@@ -14,6 +14,7 @@
 	text-align: justify;
 	margin: 10px;
 	font-size: 11pt;
+
 }
 
 .rounded-list {
@@ -56,6 +57,6 @@
 @media screen and (max-width: 100px) {
 	.city-image {
 		height: 200px;
-		width: 100%;
+		width: 400px;
 	}
 }
