@@ -23,6 +23,8 @@ function Pins(props) {
           transform: `translate(${-SIZE / 2}px,${-SIZE}px)`
         }}
         onClick={() => onClick(city)}
+
+
       >
         <path d={ICON} />
       </svg>

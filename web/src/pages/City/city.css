@@ -1,15 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+
 .city-image {
 	width: 100%;
-	height: 450px;
+	height: 420px;
 	border: 5px solid #444;
 
 	margin-right: auto;
 }
 
 .description {
-	text-align: center;
+	font-family: 'Titillium Web', sans-serif;
+	text-align: justify;
 	margin: 10px;
+	font-size: 11pt;
 }
 
 .rounded-list {

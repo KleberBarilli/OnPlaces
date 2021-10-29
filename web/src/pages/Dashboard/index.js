@@ -8,7 +8,7 @@ import MapGL, {
   GeolocateControl
 } from 'react-map-gl';
 import { Link } from 'react-router-dom'
-import { FaCity, FaPlus } from 'react-icons/fa';
+import { FaCity } from 'react-icons/fa';
 import { GoDiffAdded } from 'react-icons/go';
 
 import './dashboard.css'
@@ -103,7 +103,7 @@ export default function Dashboard() {
 
 
         {popupInfo && (
-			<Link to={`/city/${popupInfo.id}`} target="_blank" rel="noopener noreferrer">
+
           <Popup
 			className="fuck"
             tipSize={5}
@@ -112,10 +112,11 @@ export default function Dashboard() {
             latitude={popupInfo.latitude}
             closeOnClick={false}
             onClose={setPopupInfo}
+			onClick={()=> window.open(`/city/${popupInfo.id}`) }
           >
             <CityInfo info={popupInfo} />
           </Popup>
-		  </Link>
+
         )}
 
 
