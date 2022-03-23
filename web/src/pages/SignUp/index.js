@@ -21,7 +21,7 @@ function SignUp() {
 	return (
 	  <div className="container-center">
 		<div className="login">
-		<h3>City Travel App</h3>
+		<h3>Pin Places App</h3>
 			<div className="login-area">
 				<img src={logo} alt="Logo" />
 			</div>
