@@ -22,6 +22,13 @@ Main Features of the app
 Check the database settings in **ormconfig.js**, i recommend you use postgres with docker <img align="center" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/postgresql/postgresql-original.svg">
 <img align="center" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/docker/docker-original.svg">
 
+```bash
+docker run --name places_db -e POSTGRES_PASSWORD=yourpassword -p 5432:5432 -d postgres
+
+docker exec -it idcontainer bash
+root@05b3a3471f6f:/# psql -U postgres
+postgres-# CREATE DATABASE places_db;
+```
 
 ## Run App
 ```bash
