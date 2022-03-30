@@ -4,7 +4,7 @@ module.exports = {
 	"port": 5432,
 	"username": "postgres",
 	"password": "docker",
-	"database": "cities_db",
+	"database": "places_db",
 	"synchronize": false,
 	"migrationsRun": false,
 	"logging": false,

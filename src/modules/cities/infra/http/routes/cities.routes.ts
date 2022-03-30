@@ -22,7 +22,7 @@ citiesRouter.get(
 	citiesController.userIndex,
 );
 
-citiesRouter.get('/', citiesController.index);
+citiesRouter.get('/', citiesController.index); //with paginate
 citiesRouter.get('/all', citiesController.findAll);
 citiesRouter.get('/byname/:name', citiesController.showByName);
 
