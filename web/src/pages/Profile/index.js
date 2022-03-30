@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import './profile.css';
 import Header from '../../components/Header';
 import Title from '../../components/Title';
@@ -19,23 +19,23 @@ function Profile() {
 	const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
 	const [imageAvatar, setImageAvatar] = useState(null);
 
+
+	useEffect(() => {}, [avatarUrl])
+
 	function handleFile(e) {
-		console.log(e.target.files[0]);
 		if (e.target.files[0]) {
 			const image = e.target.files[0];
 
 			if (image.type === 'image/jpeg' || image.type === 'image/png') {
-				console.log(e.target.files);
 				setImageAvatar(image);
 				setAvatarUrl(URL.createObjectURL(e.target.files[0]));
 			} else {
-				alert('Envie uma imagem do tipo PNG OU JPEG');
+				alert('Envie uma imagem do tipo PNG ou JPEG');
 				setImageAvatar(null);
 				return null;
 			}
 		}
 	}
-
 	async function handleUpload() {
 		const formData = new FormData();
 		formData.append('image', imageAvatar, imageAvatar.name);
@@ -45,7 +45,9 @@ function Profile() {
 			},
 		})
 			.then(res => {
-				alert('okkkkk');
+				user.avatarUrl = res.data.avatar
+				alert('Foto alterada com sucesso')
+				history.push('/dashboard')
 			})
 			.catch(err => {
 				console.log(err);
@@ -57,24 +59,28 @@ function Profile() {
 		e.preventDefault();
 
 		if (imageAvatar === null && name !== '') {
-			await api.patch('/profile', {
-				name: name
-			},
-			{
-                headers: { 'Authorization': `Bearer ${user.token}`}
-            })
-			.then(()=>{
-				let data = {
-					...user,
-					name:name
-				}
-				setUser(data);
-				storageUser(data);
-				alert('Nome Editado')
-			})
-			.catch((err)=>{
-				alert(err)
-			})
+			await api
+				.patch(
+					'/profile',
+					{
+						name: name,
+					},
+					{
+						headers: { Authorization: `Bearer ${user.token}` },
+					},
+				)
+				.then(() => {
+					let data = {
+						...user,
+						name: name,
+					};
+					setUser(data);
+					storageUser(data);
+					alert('Nome Editado');
+				})
+				.catch(err => {
+					alert(err);
+				});
 		} else if (name !== '' && imageAvatar !== null) {
 			handleUpload();
 		}
@@ -104,17 +110,19 @@ function Profile() {
 								onChange={handleFile}
 							/>
 							<br />
-							{avatarUrl === null || undefined ? (
+							{avatarUrl === null ? (
 								<img
 									src={avatar}
 									width="250"
-									alt="Foto de perfil"
+									height="250"
+									alt="Altere sua foto aqui"
 								/>
 							) : (
 								<img
-									src={`${process.env.REACT_APP_S3_URL}${avatarUrl}`}
-									width="170"
-									alt="Foto de perfil"
+									src={avatarUrl}
+									width="250"
+									height="250"
+									alt="Altere sua foto"
 								/>
 							)}
 						</label>

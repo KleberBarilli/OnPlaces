@@ -20,7 +20,9 @@ function Header() {
   return(
 	  <div className="sidebar">
 		  <div>
-		  	<img src={user.avatarUrl === null || undefined ? avatar : `${process.env.REACT_APP_S3_URL}${user.avatarUrl}` } alt="Foto avatar" /><span className="welcome">Welcome {user.name}</span>
+		  	<img src={user.avatarUrl === null || undefined ? avatar : `${process.env.REACT_APP_S3_URL}${user.avatarUrl}` } 
+			  alt="Foto avatar" />
+			  
 		  </div>
 		  <Link to="/dashboard">
 		  	<FiHome color="#FFF" size={24} />
