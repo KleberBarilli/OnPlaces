@@ -37,7 +37,7 @@ export default {
 	},
 	config: {
 		aws: {
-			bucket: 'api-cities',
+			bucket: 'api-places',
 		},
 	},
 } as IUploadConfig;
