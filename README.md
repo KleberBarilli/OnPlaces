@@ -1,6 +1,7 @@
 ## <p align="center">Still in development⚒⚠
-## <p align="center">This sistem will integrate users with a map of all cities in the world, where you can contribute information about any city, adding descriptions, tourist places and images
 	Check the frontend [Code](https://github.com/KleberBarilli/PinPlacesWeb).
+## <p align="center">This sistem will integrate users with a map of all cities in the world, where you can contribute information about any city, adding descriptions, tourist places and images
+	
 	
 ![alt text](https://api-cities.s3.amazonaws.com/site/home.png)
 Main Features of the app
