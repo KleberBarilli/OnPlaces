@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node dist/shared/infra/http/server.js",
+    "start": "NODE_ENV=production node dist/shared/infra/http/server.js",
     "start-local": "cross-env NODE_ENV=production node -r esm dist/shared/infra/http/server.js",
     "dev": "cross-env NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
