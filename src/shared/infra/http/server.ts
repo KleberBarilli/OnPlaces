@@ -41,4 +41,5 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 
 app.listen(process.env.PORT, () => {
 	console.log(`Rodando na porta ${process.env.PORT}`);
+	console.log(`Ambiente ${process.env.NODE_ENV}`);
 });
