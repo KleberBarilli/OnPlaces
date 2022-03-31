@@ -5,6 +5,7 @@
 	  "lib": ["es6"],
 	  "allowJs": true,
 	  "outDir": "build",
+	  "rootDir": "src",
 	  "strict": true,
 	  "noImplicitAny": true,
 	  "strictPropertyInitialization": false,
@@ -32,3 +33,4 @@
 	  "forceConsistentCasingInFileNames": true
 	}
   }
+  

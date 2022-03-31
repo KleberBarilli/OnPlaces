@@ -2,8 +2,8 @@ import { ICreateCity } from '@modules/cities/domain/models/ICreateCity';
 import { ICitiesRepository } from '@modules/cities/domain/repositories/ICitiesRepository';
 import { v4 as uuidv4 } from 'uuid';
 import City from '@modules/cities/infra/typeorm/entities/City';
-import { ICity } from '../../models/ICity';
-import { IPaginateCity } from '../../models/IPaginateCity';
+import { ICity } from '@modules/cities/domain/models/ICity';
+import { IPaginateCity } from '@modules/cities/domain/models/IPaginateCity';
 
 export default class FakeCitiesRepository implements ICitiesRepository {
 	private cities: City[] = [];

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import CreateSessionsService from '../../../services/CreateSessionsSevice';
+import CreateSessionsService from '@modules/users/services/CreateSessionsSevice';
 import { classToClass } from 'class-transformer';
 import { container } from 'tsyringe';
 
