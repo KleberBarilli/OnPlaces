@@ -1,6 +1,6 @@
+/*
 import { inject, injectable } from 'tsyringe';
 import { IPaginateCity } from '../domain/models/IPaginateCity';
-import RedisCache from '@shared/cache/RedisCache';
 import { ICitiesRepository } from '../domain/repositories/ICitiesRepository';
 
 @injectable()
@@ -22,3 +22,5 @@ export default class ListUserCityService {
 		return listCities;
 	}
 }
+
+*/

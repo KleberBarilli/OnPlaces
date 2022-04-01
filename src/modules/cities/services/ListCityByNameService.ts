@@ -1,5 +1,3 @@
-import RedisCache from '@shared/cache/RedisCache';
-import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { ICity } from '../domain/models/ICity';
 import { IListCityName } from '../domain/models/IListCityName';

@@ -1,4 +1,3 @@
-import RedisCache from '@shared/cache/RedisCache';
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import { ICity } from '../domain/models/ICity';
@@ -41,10 +40,6 @@ export default class UpdateCitieservice {
 
 		await this.citiesRepository.save(city);
 		console.log(city);
-
-		await RedisCache.invalidate(`cities`);
-		await RedisCache.invalidate(`user-cities${author}`);
-		await RedisCache.invalidate(`user-city-name`);
 
 		return city;
 	}

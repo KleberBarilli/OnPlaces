@@ -1,4 +1,3 @@
-import RedisCache from '@shared/cache/RedisCache';
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import { IDeleteCity } from '../domain/models/IDeleteCity';
@@ -15,10 +14,6 @@ export default class DeleteCityservice {
 		if (!city) {
 			throw new AppError('City Not found');
 		}
-
-		await RedisCache.invalidate(`cities`);
-		await RedisCache.invalidate(`user-cities${city.author}`);
-		await RedisCache.invalidate(`user-city-name`);
 
 		await this.citiesRepository.remove(city);
 	}

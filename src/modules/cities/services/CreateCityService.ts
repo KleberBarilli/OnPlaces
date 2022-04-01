@@ -3,7 +3,6 @@ import { inject, injectable } from 'tsyringe';
 import { ICitiesRepository } from '../domain/repositories/ICitiesRepository';
 import { ICreateCity } from '../domain/models/ICreateCity';
 import { ICity } from '../domain/models/ICity';
-import RedisCache from '@shared/cache/RedisCache';
 import { IUsersRepository } from '@modules/users/domain/repositories/IUsersRepository';
 
 @injectable()
@@ -43,10 +42,6 @@ export default class CreateCityService {
 			tourist_places,
 			author,
 		});
-
-		await RedisCache.invalidate(`cities`);
-		await RedisCache.invalidate(`user-cities${author_id}`);
-		await RedisCache.invalidate(`user-city-name`);
 
 		return city;
 	}
