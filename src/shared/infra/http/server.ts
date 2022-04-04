@@ -15,7 +15,13 @@ import { types } from 'pg';
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = ['http://localhost:3000'];
+
+const options: cors.CorsOptions = {
+	origin: allowedOrigins,
+};
+
+app.use(cors(options));
 app.use(express.json());
 //app.use(rateLimiter);
 app.use(pagination);

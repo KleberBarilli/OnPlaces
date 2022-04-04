@@ -4,7 +4,7 @@ let path = process.env.NODE_ENV === 'development' ? "src" : "dist";
 module.exports = {
 	"type": "postgres",
 	"url":`${process.env.DATABASE_URL}`,
-	"ssl": {rejectUnauthorized: false },
+	"ssl": {rejectUnauthorized: false }, // desativar no local.
 	"synchronize": false,
 	"migrationsRun": false,
 	"logging": false,
