@@ -1,5 +1,5 @@
 <p align="center">
-   Frontend Repo > https://github.com/KleberBarilli/PinPlacesWeb
+   Frontend Repo > https://github.com/KleberBarilli/OnPlacesWeb
 </p>
 
 
