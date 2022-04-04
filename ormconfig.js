@@ -1,3 +1,4 @@
+/*global someFunction, process*/
 let ext = process.env.NODE_ENV === 'development' ? 'ts' : 'js';
 let path = process.env.NODE_ENV === 'development' ? 'src' : 'dist';
 

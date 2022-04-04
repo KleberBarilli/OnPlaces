@@ -18,6 +18,7 @@ const app = express();
 const allowedOrigins = [
 	'http://localhost:3000',
 	'https://on-places-web.herokuapp.com',
+	'https://on-places.herokuapp.com',
 ];
 
 const options: cors.CorsOptions = {
