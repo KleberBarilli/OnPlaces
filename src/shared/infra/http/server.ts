@@ -15,7 +15,10 @@ import { types } from 'pg';
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = [
+	'http://localhost:3000',
+	'https://on-places-web.herokuapp.com',
+];
 
 const options: cors.CorsOptions = {
 	origin: allowedOrigins,
